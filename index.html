@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* All the CSS from your original file remains here */
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
@@ -84,6 +85,7 @@
         .nav-links {
             display: flex;
             gap: 2rem;
+            list-style: none;
         }
 
         .nav-links a {
@@ -182,6 +184,13 @@
             object-fit: cover;
             border: 8px solid white;
             box-shadow: var(--shadow);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            font-weight: bold;
         }
 
         .btn {
@@ -638,6 +647,56 @@
                 padding: 20px;
             }
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #64748b;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #ef4444;
+        }
     </style>
 </head>
 <body>
@@ -647,7 +706,7 @@
             <div class="logo">
                 <h1>Ibrahim<span>Rabiu</span></h1>
             </div>
-            
+
             <nav>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -681,15 +740,7 @@
             </div>
             <div class="hero-image">
     <img src="profile.jpg" alt="Ibrahim Rabiu" class="profile-img">
-</div>
-                    <!-- This would be replaced with an actual image -->
-                    <div style="width:100%; height:100%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:5rem;">
-                        IR
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</div><div class="hero-image">
 
     <!-- About Section -->
     <section class="about-section" id="about">
@@ -698,7 +749,7 @@
                 <h2>About Me</h2>
                 <p>Learn more about my background, education, and professional journey</p>
             </div>
-            
+
             <div class="about-content">
                 <div class="about-text">
                     <p>
@@ -715,7 +766,7 @@
                         When I'm not coding, you can find me exploring new programming concepts, contributing 
                         to open-source projects, or expanding my knowledge through online courses and technical books.
                     </p>
-                    
+
                     <div class="stats">
                         <div class="stat-item">
                             <div class="stat-number" id="projectsCount">0</div>
@@ -731,9 +782,8 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="about-image">
-                    <!-- Placeholder for about image -->
                     <div style="width:100%; height:400px; background-color: #e0f2fe; border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--primary); font-size:2rem;">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -749,7 +799,7 @@
                 <h2>Technical Skills</h2>
                 <p>Technologies and tools I'm currently mastering</p>
             </div>
-            
+
             <div class="skills-container">
                 <div class="skill-category">
                     <h3><i class="fas fa-code"></i> Frontend Development</h3>
@@ -781,7 +831,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
                     <h3><i class="fas fa-server"></i> Backend Development</h3>
                     <div class="skill-item">
@@ -812,7 +862,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
                     <h3><i class="fas fa-tools"></i> Tools & Other</h3>
                     <div class="skill-item">
@@ -854,7 +904,7 @@
                 <h2>My Projects</h2>
                 <p>Showcasing my recent work and development projects</p>
             </div>
-            
+
             <div class="projects-container">
                 <div class="project-card">
                     <div class="project-img">
@@ -869,10 +919,10 @@
                             <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">Responsive Design</span>
                         </div>
-                        <a href="#" class="btn">View Details</a>
+                        <button onclick="openProjectModal('portfolio')" class="btn">View Details</button>
                     </div>
                 </div>
-                
+
                 <div class="project-card">
                     <div class="project-img">
                         <i class="fas fa-cloud-sun"></i>
@@ -886,10 +936,10 @@
                             <span class="tech-tag">UI/UX Design</span>
                             <span class="tech-tag">CSS Grid</span>
                         </div>
-                        <a href="#" class="btn">View Details</a>
+                        <button onclick="openProjectModal('weather')" class="btn">View Demo</button>
                     </div>
                 </div>
-                
+
                 <div class="project-card">
                     <div class="project-img">
                         <i class="fas fa-school"></i>
@@ -903,7 +953,7 @@
                             <span class="tech-tag">Tkinter GUI</span>
                             <span class="tech-tag">File I/O</span>
                         </div>
-                        <a href="#" class="btn">View Details</a>
+                        <button onclick="openProjectModal('school')" class="btn">Coming Soon</button>
                     </div>
                 </div>
             </div>
@@ -926,7 +976,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Email</h4>
-                            <p>contact@ibrahim.rabiu0707@gmail.com</p>
+                            <p>ibrahim.rabiu0707@gmail.com</p>
                         </div>
                     </div>
                     
@@ -951,20 +1001,33 @@
                     </div>
                     
                     <div class="social-links">
-                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/ibrahimrabiudebug" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com" title="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Subject" required>
-                        <textarea placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
+                    <form id="contactForm" action="https://formsubmit.co/ibrahim.rabiu0707@gmail.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Message from Portfolio Website">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="thank-you.html">
+                        <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I have received your message and will get back to you as soon as possible. - Ibrahim Rabiu">
+                        
+                        <!-- Form Fields -->
+                        <input type="text" name="name" placeholder="Your Name" required minlength="2" maxlength="50">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject" required minlength="5" maxlength="100">
+                        <textarea name="message" placeholder="Your Message" required minlength="10" maxlength="1000"></textarea>
+                        <button type="submit" class="btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Sending...
+                            </span>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -987,18 +1050,166 @@
         </div>
     </footer>
 
+    <!-- Project Modals -->
+    <div id="portfolioModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('portfolioModal')">&times;</button>
+            
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">Personal Portfolio Website</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Features</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Fully Responsive Design</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Modern UI/UX</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Contact Form Integration</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Animated Elements</li>
+                        <li style="padding: 10px 0;">✅ SEO Optimized</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Technologies</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <span style="background: #e34f26; color: white; padding: 8px 16px; border-radius: 20px;">HTML5</span>
+                        <span style="background: #1572b6; color: white; padding: 8px 16px; border-radius: 20px;">CSS3</span>
+                        <span style="background: #f7df1e; color: #333; padding: 8px 16px; border-radius: 20px;">JavaScript</span>
+                        <span style="background: #0ea5e9; color: white; padding: 8px 16px; border-radius: 20px;">Responsive Design</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin: 30px 0;">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">Project Overview</h3>
+                <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+                    This portfolio website was built from scratch using modern web technologies. 
+                    It features a clean, professional design that works perfectly on all devices 
+                    from mobile phones to desktop computers.
+                </p>
+                <p style="color: #64748b; line-height: 1.6;">
+                    Key features include animated skill bars, interactive project cards, 
+                    a functional contact form, and smooth scrolling navigation. The website 
+                    is optimized for performance and accessibility.
+                </p>
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <a href="projects/portfolio-website/index.html" class="btn" style="flex: 1; text-align: center;">View Full Project</a>
+                <a href="https://github.com/ibrahimrabiudebug" class="btn btn-outline" style="flex: 1; text-align: center;">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="weatherModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('weatherModal')">&times;</button>
+            
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">Weather App Interface</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Features</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Real-time Weather Data</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ 5-Day Forecast</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Location Search</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Temperature Unit Toggle</li>
+                        <li style="padding: 10px 0;">✅ Responsive Design</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Technologies</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <span style="background: #3b82f6; color: white; padding: 8px 16px; border-radius: 20px;">JavaScript</span>
+                        <span style="background: #0ea5e9; color: white; padding: 8px 16px; border-radius: 20px;">Weather API</span>
+                        <span style="background: #10b981; color: white; padding: 8px 16px; border-radius: 20px;">CSS Grid</span>
+                        <span style="background: #8b5cf6; color: white; padding: 8px 16px; border-radius: 20px;">Fetch API</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin: 30px 0;">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">Project Overview</h3>
+                <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+                    This weather application demonstrates API integration and responsive design. 
+                    It displays current weather conditions, hourly forecasts, and 5-day predictions 
+                    for any location worldwide.
+                </p>
+                <p style="color: #64748b; line-height: 1.6;">
+                    The app features a clean, intuitive interface with weather icons, temperature 
+                    displays, and detailed weather metrics like humidity, wind speed, and pressure.
+                </p>
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <a href="projects/weather-app/index.html" class="btn" style="flex: 1; text-align: center;">View Live Demo</a>
+                <a href="https://github.com/ibrahimrabiudebug" class="btn btn-outline" style="flex: 1; text-align: center;">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="schoolModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('schoolModal')">&times;</button>
+            
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">School Management System</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Features</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Student Records Management</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Grade Tracking</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Attendance System</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Report Generation</li>
+                        <li style="padding: 10px 0;">✅ User Authentication</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Technologies</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <span style="background: #3776ab; color: white; padding: 8px 16px; border-radius: 20px;">Python</span>
+                        <span style="background: #003B57; color: white; padding: 8px 16px; border-radius: 20px;">SQLite</span>
+                        <span style="background: #4a76a8; color: white; padding: 8px 16px; border-radius: 20px;">Tkinter</span>
+                        <span style="background: #444444; color: white; padding: 8px 16px; border-radius: 20px;">File I/O</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin: 30px 0;">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">Project Overview</h3>
+                <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+                    This desktop application helps educational institutions manage student information, 
+                    grades, attendance, and administrative tasks efficiently.
+                </p>
+                <p style="color: #64748b; line-height: 1.6;">
+                    Built with Python and Tkinter for the GUI, it uses SQLite for data storage and 
+                    provides a user-friendly interface for school administrators.
+                </p>
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <button class="btn" style="flex: 1; text-align: center; opacity: 0.7; cursor: not-allowed;" disabled>Coming Soon</button>
+                <button class="btn btn-outline" style="flex: 1; text-align: center; opacity: 0.7; cursor: not-allowed;" disabled>GitHub</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.querySelector('.nav-links');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
         });
-        
+
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
@@ -1006,55 +1217,55 @@
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
-        
+
         // Animated counters
         function animateCounters() {
             const projectsCount = document.getElementById('projectsCount');
             const technologiesCount = document.getElementById('technologiesCount');
             const learningHours = document.getElementById('learningHours');
-            
+
             let projects = 0;
             let technologies = 0;
             let hours = 0;
-            
+
             const projectsTarget = 8;
             const technologiesTarget = 12;
             const hoursTarget = 500;
-            
+
             const interval = setInterval(() => {
                 projects += Math.ceil(projectsTarget / 50);
                 technologies += Math.ceil(technologiesTarget / 50);
                 hours += Math.ceil(hoursTarget / 50);
-                
+
                 if (projects >= projectsTarget) projects = projectsTarget;
                 if (technologies >= technologiesTarget) technologies = technologiesTarget;
                 if (hours >= hoursTarget) hours = hoursTarget;
-                
+
                 projectsCount.textContent = projects;
                 technologiesCount.textContent = technologies;
                 learningHours.textContent = hours;
-                
+
                 if (projects === projectsTarget && technologies === technologiesTarget && hours === hoursTarget) {
                     clearInterval(interval);
                 }
             }, 30);
         }
-        
+
         // Animate skill bars on scroll
         function animateSkillBars() {
             const skillBars = document.querySelectorAll('.skill-progress');
-            
+
             skillBars.forEach(bar => {
                 const width = bar.getAttribute('data-width');
                 bar.style.width = width + '%';
             });
         }
-        
+
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.3
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1067,37 +1278,33 @@
                 }
             });
         }, observerOptions);
-        
+
         // Observe sections
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
-        
-        // Form submission
+
+        // Form submission with loading state
         const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = contactForm.querySelector('input[type="text"]').value;
-            const email = contactForm.querySelector('input[type="email"]').value;
-            
-            // In a real implementation, you would send this data to a server
-            alert(`Thank you, ${name}! Your message has been sent. I'll get back to you at ${email} soon.`);
-            
-            // Reset form
-            contactForm.reset();
-        });
-        
+        if (contactForm) {
+            const btnText = contactForm.querySelector('.btn-text');
+            const btnLoading = contactForm.querySelector('.btn-loading');
+
+            contactForm.addEventListener('submit', (e) => {
+                // Show loading state
+                if (btnText) btnText.style.display = 'none';
+                if (btnLoading) btnLoading.style.display = 'inline-block';
+            });
+        }
+
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
+
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
@@ -1107,11 +1314,74 @@
                 }
             });
         });
-        
+
         // Initialize skill bars with 0 width
         document.querySelectorAll('.skill-progress').forEach(bar => {
             bar.style.width = '0%';
         });
+
+        // Modal Functions
+        function openProjectModal(projectType) {
+            let modalId;
+            switch(projectType) {
+                case 'portfolio':
+                    modalId = 'portfolioModal';
+                    break;
+                case 'weather':
+                    modalId = 'weatherModal';
+                    break;
+                case 'school':
+                    modalId = 'schoolModal';
+                    break;
+                default:
+                    return;
+            }
+            
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+        // Register Service Worker for offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
     </script>
 </body>
 </html>
