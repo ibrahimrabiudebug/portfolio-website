@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Calculator | Ibrahim Rabiu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully functional calculator built with HTML, CSS, and JavaScript">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Header Styles */
+        .calculator-header {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .calculator-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .calculator-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        .calculator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .calculator-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Features Section */
+        .features-section {
+            margin: 80px 0;
+        }
+        
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #1e293b;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #f97316;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+        
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        /* Code Example */
+        .code-section {
+            margin: 80px 0;
+        }
+        
+        .code-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #1e293b;
+        }
+        
+        .code-container {
+            background: #1e293b;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .code-header {
+            background: #0f172a;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-header span {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .copy-btn {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #475569;
+        }
+        
+        .code-container pre {
+            margin: 0;
+            padding: 30px;
+            overflow-x: auto;
+        }
+        
+        .code-container code {
+            color: #e2e8f0;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .code-container .keyword { color: #f472b6; }
+        .code-container .function { color: #60a5fa; }
+        .code-container .string { color: #34d399; }
+        .code-container .comment { color: #94a3b8; }
+        .code-container .number { color: #fbbf24; }
+        
+        /* Project Info */
+        .project-info {
+            background: #f8fafc;
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin: 80px 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #475569;
+        }
+        
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-card li::before {
+            content: '✓';
+            color: #10b981;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .tech-tag {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .tech-tag.html { background: #e34f26; color: white; }
+        .tech-tag.css { background: #1572b6; color: white; }
+        .tech-tag.js { background: #f7df1e; color: #333; }
+        .tech-tag.responsive { background: #0ea5e9; color: white; }
+        .tech-tag.design { background: #8b5cf6; color: white; }
+        
+        /* Footer */
+        .calculator-footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .calculator-footer a {
+            color: #f97316;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .calculator-footer a:hover {
+            color: #fb923c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="calculator-header">
+        <div class="calculator-container">
+            <a href="../../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+            <h1>Interactive Calculator</h1>
+            <p>A fully functional calculator built with HTML, CSS, and JavaScript. Perform calculations with style!</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="calculator-container">
+        <div class="calculator-wrapper">
+            <!-- Calculator Display Area -->
+            <div>
+                <h2 style="font-size: 2rem; margin-bottom: 30px; color: #1e293b;">Live Calculator</h2>
+                <div id="calculator-app">
+                    <!-- Calculator will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Instructions -->
+            <div>
+                <h2 style="font-size: 2rem; margin-bottom: 30px; color: #1e293b;">How to Use</h2>
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                    <h3 style="color: #f97316; margin-bottom: 20px;">Basic Operations</h3>
+                    <ul style="list-style: none; padding: 0; color: #475569; line-height: 1.8;">
+                        <li><strong>Addition:</strong> Click numbers, then '+', then equals</li>
+                        <li><strong>Subtraction:</strong> Click numbers, then '-', then equals</li>
+                        <li><strong>Multiplication:</strong> Click numbers, then '×', then equals</li>
+                        <li><strong>Division:</strong> Click numbers, then '÷', then equals</li>
+                        <li><strong>Clear:</strong> 'C' clears everything, 'CE' clears last entry</li>
+                        <li><strong>Percentage:</strong> Calculate percentages with '%'</li>
+                        <li><strong>Decimal:</strong> Add decimal point with '.'</li>
+                    </ul>
+                    
+                    <h3 style="color: #f97316; margin-bottom: 20px; margin-top: 30px;">Keyboard Shortcuts</h3>
+                    <ul style="list-style: none; padding: 0; color: #475569; line-height: 1.8;">
+                        <li><strong>Numbers 0-9:</strong> Type directly</li>
+                        <li><strong>Operators:</strong> +, -, *, /</li>
+                        <li><strong>Enter:</strong> Calculate result</li>
+                        <li><strong>Escape:</strong> Clear calculator</li>
+                        <li><strong>Backspace:</strong> Delete last digit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2>Calculator Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Basic Operations</h3>
+                    <p>Addition, subtraction, multiplication, division, and percentage calculations</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h3>Keyboard Support</h3>
+                    <p>Type calculations directly or use the on-screen buttons</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Works perfectly on desktop, tablet, and mobile devices</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Modern UI</h3>
+                    <p>Clean, intuitive interface with smooth animations</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Example -->
+        <section class="code-section">
+            <h2>Code Implementation</h2>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span>script.js - Calculator Logic</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre><code class="language-javascript">// Calculator Class
+class Calculator {
+    constructor() {
+        this.currentInput = '0';
+        this.previousInput = '';
+        this.operation = null;
+        this.shouldResetScreen = false;
+        
+        this.init();
+    }
+    
+    init() {
+        this.updateDisplay();
+        this.setupEventListeners();
+    }
+    
+    updateDisplay() {
+        const display = document.querySelector('.calculator-display');
+        if (display) {
+            // Format large numbers
+            let displayValue = this.currentInput;
+            if (displayValue.length > 12) {
+                displayValue = parseFloat(displayValue).toExponential(6);
+            }
+            display.textContent = displayValue;
+        }
+    }
+    
+    appendNumber(number) {
+        if (this.shouldResetScreen) {
+            this.currentInput = '';
+            this.shouldResetScreen = false;
+        }
+        
+        if (number === '.' && this.currentInput.includes('.')) return;
+        
+        if (this.currentInput === '0' && number !== '.') {
+            this.currentInput = number;
+        } else {
+            this.currentInput += number;
+        }
+        
+        this.updateDisplay();
+    }
+    
+    chooseOperation(op) {
+        if (this.currentInput === '') return;
+        
+        if (this.previousInput !== '') {
+            this.calculate();
+        }
+        
+        this.operation = op;
+        this.previousInput = this.currentInput;
+        this.currentInput = '';
+        this.updateDisplay();
+    }
+    
+    calculate() {
+        let computation;
+        const prev = parseFloat(this.previousInput);
+        const current = parseFloat(this.currentInput);
+        
+        if (isNaN(prev) || isNaN(current)) return;
+        
+        switch (this.operation) {
+            case '+':
+                computation = prev + current;
+                break;
+            case '-':
+                computation = prev - current;
+                break;
+            case '×':
+                computation = prev * current;
+                break;
+            case '÷':
+                if (current === 0) {
+                    alert("Cannot divide by zero!");
+                    this.clear();
+                    return;
+                }
+                computation = prev / current;
+                break;
+            case '%':
+                computation = prev % current;
+                break;
+            default:
+                return;
+        }
+        
+        this.currentInput = computation.toString();
+        this.operation = null;
+        this.previousInput = '';
+        this.shouldResetScreen = true;
+        this.updateDisplay();
+    }
+    
+    clear() {
+        this.currentInput = '0';
+        this.previousInput = '';
+        this.operation = null;
+        this.updateDisplay();
+    }
+    
+    clearEntry() {
+        this.currentInput = '0';
+        this.updateDisplay();
+    }
+    
+    deleteLast() {
+        if (this.currentInput.length > 1) {
+            this.currentInput = this.currentInput.slice(0, -1);
+        } else {
+            this.currentInput = '0';
+        }
+        this.updateDisplay();
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Project Info -->
+        <section class="project-info">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: #1e293b;">Project Details</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-bullseye"></i> Project Goals</h3>
+                    <ul>
+                        <li>Create a fully functional calculator</li>
+                        <li>Implement clean, modern UI/UX</li>
+                        <li>Add keyboard support</li>
+                        <li>Ensure responsive design</li>
+                        <li>Include error handling</li>
+                        <li>Add smooth animations</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-cogs"></i> Technologies Used</h3>
+                    <div class="tech-stack">
+                        <span class="tech-tag html">HTML5</span>
+                        <span class="tech-tag css">CSS3</span>
+                        <span class="tech-tag js">JavaScript</span>
+                        <span class="tech-tag responsive">Responsive Design</span>
+                        <span class="tech-tag design">UI/UX Design</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;"><i class="fas fa-code"></i> Key Features</h3>
+                    <ul>
+                        <li>Basic arithmetic operations</li>
+                        <li>Keyboard shortcuts</li>
+                        <li>Error handling (divide by zero)</li>
+                        <li>Responsive layout</li>
+                        <li>Smooth animations</li>
+                        <li>Clear/Delete functions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="calculator-footer">
+        <div class="calculator-container">
+            <p>© 2026 Ibrahim Rabiu | Calculator Project</p>
+            <p><a href="../../index.html">Back to Main Portfolio</a> | <a href="https://github.com/ibrahimrabiudebug">GitHub Profile</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Copy code functionality
+        function copyCode(button) {
+            const codeContainer = button.closest('.code-container');
+            const code = codeContainer.querySelector('code').textContent;
+            
+            navigator.clipboard.writeText(code)
+                .then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.style.background = '#10b981';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = '#334155';
+                    }, 2000);
+                })
+                .catch(err => {
+                    button.textContent = 'Failed!';
+                    button.style.background = '#ef4444';
+                    
+                    setTimeout(() => {
+                        button.textContent = 'Copy Code';
+                        button.style.background = '#334155';
+                    }, 2000);
+                });
+        }
+        
+        // Load calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            // This will be initialized by script.js
+            console.log('Calculator project page loaded');
+        });
+    </script>
+</body>
+</html>

@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <title>Ibrahim Rabiu | Aspiring Software Engineer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Ibrahim Rabiu, an aspiring software engineer with skills in web development and programming.">
+    <meta name="description" content="Portfolio of Ibrahim Rabiu, BSc Software Engineering student specializing in web development and programming.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* All the CSS from your original file remains here */
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
@@ -50,7 +49,7 @@
 
         /* Header & Navigation */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             box-shadow: var(--shadow);
             position: fixed;
             top: 0;
@@ -58,6 +57,7 @@
             width: 100%;
             z-index: 1000;
             padding: 1rem 0;
+            backdrop-filter: blur(10px);
         }
 
         .header-container {
@@ -155,7 +155,7 @@
         }
 
         .hero-text h2 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             line-height: 1.1;
             margin-bottom: 1rem;
             color: var(--secondary);
@@ -172,6 +172,16 @@
             max-width: 600px;
         }
 
+        .education-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
         .hero-image {
             flex: 1;
             text-align: center;
@@ -184,13 +194,7 @@
             object-fit: cover;
             border: 8px solid white;
             box-shadow: var(--shadow);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 5rem;
-            font-weight: bold;
+            background-color: #f8fafc;
         }
 
         .btn {
@@ -272,6 +276,23 @@
         .about-text p {
             margin-bottom: 20px;
             color: var(--secondary);
+        }
+
+        .education-details {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+        }
+
+        .education-details h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .education-details p {
+            color: var(--gray);
         }
 
         .stats {
@@ -565,6 +586,134 @@
             color: var(--primary);
         }
 
+        /* Calculator Modal */
+        .calculator-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .calculator-content {
+            background: white;
+            margin: 2% auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s ease;
+            z-index: 2001;
+        }
+
+        .modal-close:hover {
+            color: #ef4444;
+        }
+
+        /* Calculator Styles */
+        .calculator {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-display {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: right;
+            font-size: 1.8rem;
+            font-family: 'Roboto Mono', monospace;
+            min-height: 70px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .calculator-history {
+            font-size: 0.9rem;
+            color: var(--gray);
+            min-height: 20px;
+        }
+
+        .calculator-result {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calculator-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calculator-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .calculator-btn.operator {
+            background: #e0f2fe;
+            color: var(--primary);
+        }
+
+        .calculator-btn.operator:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calculator-btn.equals {
+            background: var(--primary);
+            color: white;
+            grid-column: span 2;
+        }
+
+        .calculator-btn.equals:hover {
+            background: var(--primary-dark);
+        }
+
+        .calculator-btn.clear {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .calculator-btn.clear:hover {
+            background: #dc2626;
+            color: white;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content {
@@ -619,6 +768,12 @@
             .stats {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .calculator-content {
+                margin: 5% auto;
+                width: 95%;
+                padding: 20px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -646,30 +801,11 @@
             .skill-category {
                 padding: 20px;
             }
-        }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            overflow-y: auto;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background: white;
-            margin: 5% auto;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 800px;
-            position: relative;
-            animation: slideUp 0.3s ease;
+            .calculator-btn {
+                padding: 12px;
+                font-size: 1rem;
+            }
         }
 
         @keyframes fadeIn {
@@ -680,22 +816,6 @@
         @keyframes slideUp {
             from { transform: translateY(50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #64748b;
-            transition: color 0.3s ease;
-        }
-
-        .modal-close:hover {
-            color: #ef4444;
         }
     </style>
 </head>
@@ -726,46 +846,59 @@
     <section class="hero" id="home">
         <div class="container hero-content">
             <div class="hero-text">
+                <div class="education-badge">
+                    <i class="fas fa-graduation-cap"></i> BSc Software Engineering Student
+                </div>
                 <h2>Hi, I'm <span>Ibrahim Rabiu</span></h2>
                 <h2>Aspiring Software Engineer</h2>
                 <p>
-                    Motivated student with a strong foundation in science and mathematics, 
-                    currently advancing my skills in software engineering and web development. 
-                    Passionate about creating efficient, scalable solutions to real-world problems.
+                    Currently pursuing my BSc in Software Engineering with a strong foundation in 
+                    mathematics and computer science. Passionate about building efficient, scalable 
+                    solutions and continuously expanding my technical expertise.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                    <a href="#projects" class="btn">View My Projects</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
                 </div>
             </div>
             <div class="hero-image">
-    <img src="profile.jpg" alt="Ibrahim Rabiu" class="profile-img">
-</div><div class="hero-image">
+                <img src="profile.jpg" alt="Ibrahim Rabiu" class="profile-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"profile-img\" style=\"display:flex; align-items:center; justify-content:center; color:white; font-size:5rem; font-weight:bold; background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);\">IR</div>'">
+            </div>
+        </div>
+    </section>
 
     <!-- About Section -->
     <section class="about-section" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>About Me</h2>
-                <p>Learn more about my background, education, and professional journey</p>
+                <p>Software Engineering Student | Problem Solver | Tech Enthusiast</p>
             </div>
 
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a dedicated and passionate student currently pursuing my interest in software engineering. 
-                        My strong foundation in science and mathematics provides me with a logical and analytical 
-                        approach to problem-solving, which I apply to my programming projects.
+                        I'm a dedicated Software Engineering student with a strong analytical background 
+                        in mathematics and computer science. My journey in technology began with a curiosity 
+                        about how systems work, which has evolved into a passion for creating efficient 
+                        software solutions.
                     </p>
                     <p>
-                        I'm continuously expanding my knowledge in web development, software architecture, 
-                        and emerging technologies. My goal is to become a proficient software engineer who 
-                        can contribute to innovative projects and make a meaningful impact through technology.
+                        Currently pursuing my BSc degree, I'm focusing on mastering full-stack development, 
+                        software architecture, and best practices in software engineering. I believe in writing 
+                        clean, maintainable code and following industry standards.
                     </p>
                     <p>
-                        When I'm not coding, you can find me exploring new programming concepts, contributing 
-                        to open-source projects, or expanding my knowledge through online courses and technical books.
+                        My approach combines theoretical knowledge with practical application through 
+                        personal projects and continuous learning. I'm particularly interested in web 
+                        technologies, API design, and scalable system architecture.
                     </p>
+
+                    <div class="education-details">
+                        <h3><i class="fas fa-university"></i> Education</h3>
+                        <p><strong>BSc Software Engineering</strong> - In Progress</p>
+                        <p>Specializing in Full-Stack Development & Software Architecture</p>
+                    </div>
 
                     <div class="stats">
                         <div class="stat-item">
@@ -774,18 +907,19 @@
                         </div>
                         <div class="stat-item">
                             <div class="stat-number" id="technologiesCount">0</div>
-                            <div class="stat-text">Technologies Learned</div>
+                            <div class="stat-text">Technologies Mastered</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number" id="learningHours">0</div>
-                            <div class="stat-text">Hours of Learning</div>
+                            <div class="stat-text">Hours of Coding</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="about-image">
-                    <div style="width:100%; height:400px; background-color: #e0f2fe; border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--primary); font-size:2rem;">
+                    <div style="width:100%; height:400px; background-color: #e0f2fe; border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--primary); font-size:2rem; flex-direction: column; gap: 20px;">
                         <i class="fas fa-laptop-code"></i>
+                        <p style="font-size: 1.2rem; text-align: center; color: var(--secondary);">Always Learning, Always Building</p>
                     </div>
                 </div>
             </div>
@@ -797,7 +931,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Technical Skills</h2>
-                <p>Technologies and tools I'm currently mastering</p>
+                <p>Technologies and tools I work with</p>
             </div>
 
             <div class="skills-container">
@@ -805,29 +939,29 @@
                     <h3><i class="fas fa-code"></i> Frontend Development</h3>
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">HTML5</span>
-                            <span class="skill-percent">90%</span>
+                            <span class="skill-name">HTML5 & Semantic HTML</span>
+                            <span class="skill-percent">92%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
+                            <div class="skill-progress" data-width="92"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">CSS3</span>
+                            <span class="skill-name">CSS3 & Flexbox/Grid</span>
+                            <span class="skill-percent">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">JavaScript (ES6+)</span>
                             <span class="skill-percent">85%</span>
                         </div>
                         <div class="skill-bar">
                             <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span class="skill-name">JavaScript</span>
-                            <span class="skill-percent">75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
                         </div>
                     </div>
                 </div>
@@ -836,38 +970,16 @@
                     <h3><i class="fas fa-server"></i> Backend Development</h3>
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Python</span>
-                            <span class="skill-percent">80%</span>
+                            <span class="skill-name">Python & Django</span>
+                            <span class="skill-percent">82%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
+                            <div class="skill-progress" data-width="82"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Node.js</span>
-                            <span class="skill-percent">60%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="60"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span class="skill-name">Database Design</span>
-                            <span class="skill-percent">70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Tools & Other</h3>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span class="skill-name">Git & GitHub</span>
+                            <span class="skill-name">Node.js & Express</span>
                             <span class="skill-percent">75%</span>
                         </div>
                         <div class="skill-bar">
@@ -876,7 +988,20 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Responsive Design</span>
+                            <span class="skill-name">Database Design (SQL)</span>
+                            <span class="skill-percent">78%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="78"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Development</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Git & GitHub</span>
                             <span class="skill-percent">85%</span>
                         </div>
                         <div class="skill-bar">
@@ -885,11 +1010,20 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Problem Solving</span>
+                            <span class="skill-name">Responsive Web Design</span>
                             <span class="skill-percent">90%</span>
                         </div>
                         <div class="skill-bar">
                             <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Problem Solving & Algorithms</span>
+                            <span class="skill-percent">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88"></div>
                         </div>
                     </div>
                 </div>
@@ -902,58 +1036,79 @@
         <div class="container">
             <div class="section-title">
                 <h2>My Projects</h2>
-                <p>Showcasing my recent work and development projects</p>
+                <p>Practical applications of my skills and learning</p>
             </div>
 
             <div class="projects-container">
+                <!-- Calculator Project Card -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Interactive Calculator</h3>
+                        <p>A fully functional calculator with advanced features including keyboard support, calculation history, and multiple themes.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Local Storage</span>
+                        </div>
+                        <button class="btn open-calculator">Launch Calculator</button>
+                    </div>
+                </div>
+
+                <!-- Portfolio Website Project Card -->
                 <div class="project-card">
                     <div class="project-img">
                         <i class="fas fa-globe"></i>
                     </div>
                     <div class="project-content">
-                        <h3>Personal Portfolio Website</h3>
-                        <p>A responsive, modern portfolio website built with HTML5, CSS3, and JavaScript to showcase my projects and skills.</p>
+                        <h3>Portfolio Website</h3>
+                        <p>A responsive, modern portfolio website with animated elements, form validation, and PWA capabilities.</p>
                         <div class="project-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
                             <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Responsive Design</span>
+                            <span class="tech-tag">PWA</span>
                         </div>
-                        <button onclick="openProjectModal('portfolio')" class="btn">View Details</button>
+                        <a href="projects/portfolio-website/index.html" class="btn">View Project</a>
                     </div>
                 </div>
 
+                <!-- Weather App Project Card -->
                 <div class="project-card">
                     <div class="project-img">
                         <i class="fas fa-cloud-sun"></i>
                     </div>
                     <div class="project-content">
-                        <h3>Weather App Interface</h3>
-                        <p>A clean, intuitive weather application interface that displays current conditions and forecasts using a weather API.</p>
+                        <h3>Weather Application</h3>
+                        <p>A weather app that fetches real-time data from OpenWeather API with location detection and forecasts.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">API Integration</span>
-                            <span class="tech-tag">UI/UX Design</span>
+                            <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">CSS Grid</span>
+                            <span class="tech-tag">Async/Await</span>
                         </div>
-                        <button onclick="openProjectModal('weather')" class="btn">View Demo</button>
+                        <a href="projects/weather-app/index.html" class="btn">View Project</a>
                     </div>
                 </div>
 
+                <!-- School Management System Project Card -->
                 <div class="project-card">
                     <div class="project-img">
                         <i class="fas fa-school"></i>
                     </div>
                     <div class="project-content">
                         <h3>School Management System</h3>
-                        <p>A Python-based application for managing student records, grades, and administrative tasks for educational institutions.</p>
+                        <p>A comprehensive system for managing student records, grades, and administrative tasks.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">SQLite</span>
-                            <span class="tech-tag">Tkinter GUI</span>
-                            <span class="tech-tag">File I/O</span>
+                            <span class="tech-tag">Tkinter</span>
+                            <span class="tech-tag">OOP</span>
                         </div>
-                        <button onclick="openProjectModal('school')" class="btn">Coming Soon</button>
+                        <a href="#" class="btn">In Development</a>
                     </div>
                 </div>
             </div>
@@ -965,7 +1120,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Get In Touch</h2>
-                <p>I'm always open to discussing new opportunities and interesting projects</p>
+                <p>Open to internships, collaborations, and interesting projects</p>
             </div>
             
             <div class="contact-container">
@@ -982,42 +1137,39 @@
                     
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-phone"></i>
                         </div>
                         <div class="contact-details">
-                            <h4>Location</h4>
-                            <p>Based in Nigeria, open to remote opportunities</p>
+                            <h4>Phone</h4>
+                            <p>+234 803 378 1028</p>
                         </div>
                     </div>
                     
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-details">
-                            <h4>Phone</h4>
-                            <p>+234 XXX XXX XXXX</p>
+                            <h4>Location</h4>
+                            <p>Nigeria | Available for Remote Work</p>
                         </div>
                     </div>
                     
                     <div class="social-links">
                         <a href="https://github.com/ibrahimrabiudebug" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.facebook.com/ibminister" title="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://linkedin.com" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://twitter.com" title="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm" action="https://formsubmit.co/ibrahim.rabiu0707@gmail.com" method="POST">
-                        <!-- FormSubmit Configuration -->
-                        <input type="hidden" name="_subject" value="New Message from Portfolio Website">
+                    <form id="contactForm" method="POST" action="https://formsubmit.co/ibrahim.rabiu0707@gmail.com">
+                        <input type="hidden" name="_subject" value="New Message from Portfolio">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="thank-you.html">
-                        <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I have received your message and will get back to you as soon as possible. - Ibrahim Rabiu">
                         
-                        <!-- Form Fields -->
                         <input type="text" name="name" placeholder="Your Name" required minlength="2" maxlength="50">
                         <input type="email" name="email" placeholder="Your Email" required>
                         <input type="text" name="subject" placeholder="Subject" required minlength="5" maxlength="100">
@@ -1034,6 +1186,45 @@
         </div>
     </section>
 
+    <!-- Calculator Modal -->
+    <div class="calculator-modal" id="calculatorModal">
+        <div class="calculator-content">
+            <button class="modal-close" id="closeCalculator">&times;</button>
+            <h2 style="text-align: center; margin-bottom: 20px; color: var(--secondary);">Interactive Calculator</h2>
+            <div class="calculator">
+                <div class="calculator-display">
+                    <div class="calculator-history" id="calcHistory"></div>
+                    <div class="calculator-result" id="calcResult">0</div>
+                </div>
+                <div class="calculator-buttons">
+                    <button class="calculator-btn clear" data-action="clear">C</button>
+                    <button class="calculator-btn clear" data-action="clear-entry">CE</button>
+                    <button class="calculator-btn operator" data-action="backspace">⌫</button>
+                    <button class="calculator-btn operator" data-action="/">÷</button>
+                    
+                    <button class="calculator-btn" data-number="7">7</button>
+                    <button class="calculator-btn" data-number="8">8</button>
+                    <button class="calculator-btn" data-number="9">9</button>
+                    <button class="calculator-btn operator" data-action="*">×</button>
+                    
+                    <button class="calculator-btn" data-number="4">4</button>
+                    <button class="calculator-btn" data-number="5">5</button>
+                    <button class="calculator-btn" data-number="6">6</button>
+                    <button class="calculator-btn operator" data-action="-">−</button>
+                    
+                    <button class="calculator-btn" data-number="1">1</button>
+                    <button class="calculator-btn" data-number="2">2</button>
+                    <button class="calculator-btn" data-number="3">3</button>
+                    <button class="calculator-btn operator" data-action="+">+</button>
+                    
+                    <button class="calculator-btn" data-number="0">0</button>
+                    <button class="calculator-btn" data-action=".">.</button>
+                    <button class="calculator-btn equals" data-action="=">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
@@ -1046,157 +1237,9 @@
                 <a href="#contact">Contact</a>
             </div>
             <p>© 2026 Ibrahim Rabiu. All rights reserved.</p>
-            <p>Aspiring Software Engineer</p>
+            <p>BSc Software Engineering Student</p>
         </div>
     </footer>
-
-    <!-- Project Modals -->
-    <div id="portfolioModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('portfolioModal')">&times;</button>
-            
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">Personal Portfolio Website</h2>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
-                <div>
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">Features</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Fully Responsive Design</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Modern UI/UX</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Contact Form Integration</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Animated Elements</li>
-                        <li style="padding: 10px 0;">✅ SEO Optimized</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">Technologies</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #e34f26; color: white; padding: 8px 16px; border-radius: 20px;">HTML5</span>
-                        <span style="background: #1572b6; color: white; padding: 8px 16px; border-radius: 20px;">CSS3</span>
-                        <span style="background: #f7df1e; color: #333; padding: 8px 16px; border-radius: 20px;">JavaScript</span>
-                        <span style="background: #0ea5e9; color: white; padding: 8px 16px; border-radius: 20px;">Responsive Design</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin: 30px 0;">
-                <h3 style="color: var(--primary); margin-bottom: 15px;">Project Overview</h3>
-                <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
-                    This portfolio website was built from scratch using modern web technologies. 
-                    It features a clean, professional design that works perfectly on all devices 
-                    from mobile phones to desktop computers.
-                </p>
-                <p style="color: #64748b; line-height: 1.6;">
-                    Key features include animated skill bars, interactive project cards, 
-                    a functional contact form, and smooth scrolling navigation. The website 
-                    is optimized for performance and accessibility.
-                </p>
-            </div>
-            
-            <div style="display: flex; gap: 15px; margin-top: 30px;">
-                <a href="projects/portfolio-website/index.html" class="btn" style="flex: 1; text-align: center;">View Full Project</a>
-                <a href="https://github.com/ibrahimrabiudebug" class="btn btn-outline" style="flex: 1; text-align: center;">View on GitHub</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="weatherModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('weatherModal')">&times;</button>
-            
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">Weather App Interface</h2>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
-                <div>
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">Features</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Real-time Weather Data</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ 5-Day Forecast</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Location Search</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Temperature Unit Toggle</li>
-                        <li style="padding: 10px 0;">✅ Responsive Design</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">Technologies</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #3b82f6; color: white; padding: 8px 16px; border-radius: 20px;">JavaScript</span>
-                        <span style="background: #0ea5e9; color: white; padding: 8px 16px; border-radius: 20px;">Weather API</span>
-                        <span style="background: #10b981; color: white; padding: 8px 16px; border-radius: 20px;">CSS Grid</span>
-                        <span style="background: #8b5cf6; color: white; padding: 8px 16px; border-radius: 20px;">Fetch API</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin: 30px 0;">
-                <h3 style="color: var(--primary); margin-bottom: 15px;">Project Overview</h3>
-                <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
-                    This weather application demonstrates API integration and responsive design. 
-                    It displays current weather conditions, hourly forecasts, and 5-day predictions 
-                    for any location worldwide.
-                </p>
-                <p style="color: #64748b; line-height: 1.6;">
-                    The app features a clean, intuitive interface with weather icons, temperature 
-                    displays, and detailed weather metrics like humidity, wind speed, and pressure.
-                </p>
-            </div>
-            
-            <div style="display: flex; gap: 15px; margin-top: 30px;">
-                <a href="projects/weather-app/index.html" class="btn" style="flex: 1; text-align: center;">View Live Demo</a>
-                <a href="https://github.com/ibrahimrabiudebug" class="btn btn-outline" style="flex: 1; text-align: center;">View on GitHub</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="schoolModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('schoolModal')">&times;</button>
-            
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">School Management System</h2>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
-                <div>
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">Features</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Student Records Management</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Grade Tracking</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Attendance System</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">✅ Report Generation</li>
-                        <li style="padding: 10px 0;">✅ User Authentication</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">Technologies</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #3776ab; color: white; padding: 8px 16px; border-radius: 20px;">Python</span>
-                        <span style="background: #003B57; color: white; padding: 8px 16px; border-radius: 20px;">SQLite</span>
-                        <span style="background: #4a76a8; color: white; padding: 8px 16px; border-radius: 20px;">Tkinter</span>
-                        <span style="background: #444444; color: white; padding: 8px 16px; border-radius: 20px;">File I/O</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin: 30px 0;">
-                <h3 style="color: var(--primary); margin-bottom: 15px;">Project Overview</h3>
-                <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
-                    This desktop application helps educational institutions manage student information, 
-                    grades, attendance, and administrative tasks efficiently.
-                </p>
-                <p style="color: #64748b; line-height: 1.6;">
-                    Built with Python and Tkinter for the GUI, it uses SQLite for data storage and 
-                    provides a user-friendly interface for school administrators.
-                </p>
-            </div>
-            
-            <div style="display: flex; gap: 15px; margin-top: 30px;">
-                <button class="btn" style="flex: 1; text-align: center; opacity: 0.7; cursor: not-allowed;" disabled>Coming Soon</button>
-                <button class="btn btn-outline" style="flex: 1; text-align: center; opacity: 0.7; cursor: not-allowed;" disabled>GitHub</button>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Mobile menu toggle
@@ -1228,9 +1271,9 @@
             let technologies = 0;
             let hours = 0;
 
-            const projectsTarget = 8;
-            const technologiesTarget = 12;
-            const hoursTarget = 500;
+            const projectsTarget = 12;
+            const technologiesTarget = 15;
+            const hoursTarget = 1200;
 
             const interval = setInterval(() => {
                 projects += Math.ceil(projectsTarget / 50);
@@ -1260,6 +1303,213 @@
                 bar.style.width = width + '%';
             });
         }
+
+        // Calculator functionality
+        class Calculator {
+            constructor() {
+                this.currentValue = '0';
+                this.previousValue = '';
+                this.operation = '';
+                this.history = '';
+                this.shouldResetScreen = false;
+                this.initialize();
+            }
+
+            initialize() {
+                this.updateDisplay();
+                this.setupEventListeners();
+                this.setupKeyboardSupport();
+            }
+
+            updateDisplay() {
+                document.getElementById('calcResult').textContent = this.currentValue;
+                document.getElementById('calcHistory').textContent = this.history;
+            }
+
+            clear() {
+                this.currentValue = '0';
+                this.previousValue = '';
+                this.operation = '';
+                this.history = '';
+                this.shouldResetScreen = false;
+                this.updateDisplay();
+            }
+
+            clearEntry() {
+                this.currentValue = '0';
+                this.updateDisplay();
+            }
+
+            appendNumber(number) {
+                if (this.shouldResetScreen) {
+                    this.currentValue = '';
+                    this.shouldResetScreen = false;
+                }
+                
+                if (number === '.' && this.currentValue.includes('.')) return;
+                
+                if (this.currentValue === '0' && number !== '.') {
+                    this.currentValue = number;
+                } else {
+                    this.currentValue += number;
+                }
+                this.updateDisplay();
+            }
+
+            chooseOperation(op) {
+                if (this.currentValue === '') return;
+                
+                if (this.previousValue !== '') {
+                    this.calculate();
+                }
+                
+                this.operation = op;
+                this.previousValue = this.currentValue;
+                this.history = `${this.previousValue} ${this.getOperationSymbol(op)}`;
+                this.currentValue = '';
+                this.updateDisplay();
+            }
+
+            calculate() {
+                let computation;
+                const prev = parseFloat(this.previousValue);
+                const current = parseFloat(this.currentValue);
+                
+                if (isNaN(prev) || isNaN(current)) return;
+                
+                switch (this.operation) {
+                    case '+':
+                        computation = prev + current;
+                        break;
+                    case '-':
+                        computation = prev - current;
+                        break;
+                    case '*':
+                        computation = prev * current;
+                        break;
+                    case '/':
+                        if (current === 0) {
+                            alert("Cannot divide by zero!");
+                            return;
+                        }
+                        computation = prev / current;
+                        break;
+                    default:
+                        return;
+                }
+                
+                this.currentValue = computation.toString();
+                this.operation = '';
+                this.previousValue = '';
+                this.history = '';
+                this.shouldResetScreen = true;
+                this.updateDisplay();
+            }
+
+            deleteLast() {
+                if (this.currentValue.length > 1) {
+                    this.currentValue = this.currentValue.slice(0, -1);
+                } else {
+                    this.currentValue = '0';
+                }
+                this.updateDisplay();
+            }
+
+            getOperationSymbol(op) {
+                const symbols = {
+                    '+': '+',
+                    '-': '−',
+                    '*': '×',
+                    '/': '÷'
+                };
+                return symbols[op] || op;
+            }
+
+            setupEventListeners() {
+                document.querySelectorAll('.calculator-btn[data-number]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        this.appendNumber(button.getAttribute('data-number'));
+                    });
+                });
+
+                document.querySelectorAll('.calculator-btn[data-action]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const action = button.getAttribute('data-action');
+                        
+                        if (!isNaN(action) || action === '.') {
+                            this.appendNumber(action);
+                        } else if (['+', '-', '*', '/'].includes(action)) {
+                            this.chooseOperation(action);
+                        } else if (action === '=') {
+                            this.calculate();
+                        } else if (action === 'clear') {
+                            this.clear();
+                        } else if (action === 'clear-entry') {
+                            this.clearEntry();
+                        } else if (action === 'backspace') {
+                            this.deleteLast();
+                        }
+                    });
+                });
+            }
+
+            setupKeyboardSupport() {
+                document.addEventListener('keydown', (e) => {
+                    if (!document.getElementById('calculatorModal').style.display === 'block') return;
+                    
+                    e.preventDefault();
+                    
+                    if (e.key >= '0' && e.key <= '9') {
+                        this.appendNumber(e.key);
+                    } else if (e.key === '.') {
+                        this.appendNumber('.');
+                    } else if (e.key === '+') {
+                        this.chooseOperation('+');
+                    } else if (e.key === '-') {
+                        this.chooseOperation('-');
+                    } else if (e.key === '*') {
+                        this.chooseOperation('*');
+                    } else if (e.key === '/') {
+                        this.chooseOperation('/');
+                    } else if (e.key === 'Enter' || e.key === '=') {
+                        this.calculate();
+                    } else if (e.key === 'Escape') {
+                        this.clear();
+                    } else if (e.key === 'Backspace') {
+                        this.deleteLast();
+                    } else if (e.key === 'Delete') {
+                        this.clearEntry();
+                    }
+                });
+            }
+        }
+
+        // Calculator Modal
+        const calculatorModal = document.getElementById('calculatorModal');
+        const openCalculatorBtn = document.querySelector('.open-calculator');
+        const closeCalculatorBtn = document.getElementById('closeCalculator');
+        let calculator;
+
+        openCalculatorBtn.addEventListener('click', () => {
+            calculatorModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            if (!calculator) {
+                calculator = new Calculator();
+            }
+        });
+
+        closeCalculatorBtn.addEventListener('click', () => {
+            calculatorModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        calculatorModal.addEventListener('click', (e) => {
+            if (e.target === calculatorModal) {
+                calculatorModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -1320,68 +1570,34 @@
             bar.style.width = '0%';
         });
 
-        // Modal Functions
-        function openProjectModal(projectType) {
-            let modalId;
-            switch(projectType) {
-                case 'portfolio':
-                    modalId = 'portfolioModal';
-                    break;
-                case 'weather':
-                    modalId = 'weatherModal';
-                    break;
-                case 'school':
-                    modalId = 'schoolModal';
-                    break;
-                default:
-                    return;
-            }
-            
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                });
-            }
-        });
-
-        // Register Service Worker for offline support
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+        // Form validation
+        document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.checkValidity()) {
+                    this.style.borderColor = '#10b981';
+                } else {
+                    this.style.borderColor = '#ef4444';
+                }
             });
+        });
+
+        // Add typing effect for hero text
+        const heroText = "Aspiring Software Engineer";
+        const heroElement = document.querySelector('.hero-text h2:nth-child(3)');
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < heroText.length) {
+                heroElement.textContent = heroText.substring(0, i + 1);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
         }
+        
+        // Start typing effect after page load
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 1000);
+        });
     </script>
 </body>
 </html>

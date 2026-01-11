@@ -2,222 +2,952 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Personal Portfolio Website | Ibrahim Rabiu</title>
+    <title>Portfolio Website Project | Ibrahim Rabiu - Software Engineering Student</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional portfolio website built with HTML, CSS, and JavaScript">
+    <meta name="description" content="Professional portfolio website built with modern web technologies to showcase technical skills and projects.">
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Professional CSS Styling */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --success: #10b981;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .project-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
+
+        /* Project Hero Section */
+        .project-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .project-badge {
+            margin-bottom: 1.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 0 10px 10px 0;
+        }
+
+        .badge-success {
+            background-color: var(--success);
+        }
+
+        .project-hero h1 {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .project-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+            background: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .meta-item i {
+            color: var(--primary);
+        }
+
+        /* Preview Section */
+        .project-preview {
+            margin-bottom: 4rem;
+        }
+
+        .preview-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .browser-mockup {
+            border: 1px solid var(--gray-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .browser-header {
+            background: #f1f5f9;
+            padding: 15px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .browser-dots span {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #ccc;
+        }
+
+        .browser-dots span:nth-child(1) { background: #ff5f57; }
+        .browser-dots span:nth-child(2) { background: #ffbd2e; }
+        .browser-dots span:nth-child(3) { background: #28ca42; }
+
+        .preview-content {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: white;
+        }
+
+        .preview-content h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Project Details */
+        .project-details {
+            margin-bottom: 4rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .details-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .details-card h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .details-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .details-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-light);
+            color: var(--secondary);
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .details-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+        }
+
+        .tech-tag.html { background: #e34c26; color: white; }
+        .tech-tag.css { background: #264de4; color: white; }
+        .tech-tag.js { background: #f7df1e; color: #000; }
+        .tech-tag.responsive { background: var(--success); color: white; }
+        .tech-tag.git { background: #f05033; color: white; }
+        .tech-tag.api { background: #8b5cf6; color: white; }
+
+        /* Features Section */
+        .features-section {
+            margin-bottom: 4rem;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Code Section */
+        .code-section {
+            margin-bottom: 4rem;
+        }
+
+        .code-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .code-example {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .code-example h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-left: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .code-container {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+
+        pre {
+            margin: 0;
+            color: #e2e8f0;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        code {
+            color: inherit;
+        }
+
+        .language-html .tag { color: #ff7b72; }
+        .language-html .attr { color: #79c0ff; }
+        .language-html .attr-value { color: #a5d6ff; }
+        .language-html .comment { color: #8b949e; }
+
+        .language-javascript .keyword { color: #ff7b72; }
+        .language-javascript .function { color: #d2a8ff; }
+        .language-javascript .string { color: #a5d6ff; }
+        .language-javascript .comment { color: #8b949e; }
+
+        /* Project Links */
+        .project-links {
+            margin-bottom: 4rem;
+        }
+
+        .project-links h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .link-card {
+            display: block;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid transparent;
+        }
+
+        .link-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .link-card h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .link-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .back-home {
+            color: white;
+            text-decoration: none;
+            background: var(--primary);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .back-home:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .project-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .project-meta {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid,
+            .links-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-container {
+                padding: 1.5rem;
+            }
+            
+            pre {
+                font-size: 0.85rem;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-hero {
+                padding: 2rem 1rem;
+            }
+            
+            .project-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .details-card,
+            .feature-card,
+            .link-card,
+            .code-example {
+                padding: 1.5rem;
+            }
+            
+            .btn-large {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card,
+        .link-card,
+        .details-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .feature-card:nth-child(2) { animation-delay: 0.1s; }
+        .feature-card:nth-child(3) { animation-delay: 0.2s; }
+        .feature-card:nth-child(4) { animation-delay: 0.3s; }
+    </style>
 </head>
 <body>
     <header>
-        <div class="container header-container">
+        <div class="header-container">
             <div class="logo">
                 <h1><i class="fas fa-code"></i> Portfolio<span>Project</span></h1>
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="../../index.html">← Back to Portfolio</a></li>
+                    <li><a href="../../index.html">← Return to Main Portfolio</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="project-main">
-        <div class="container">
-            <!-- Project Hero -->
-            <section class="project-hero">
-                <div class="project-badge">
-                    <span class="badge">Featured Project</span>
-                    <span class="badge badge-success">Completed</span>
+        <!-- Project Hero -->
+        <section class="project-hero">
+            <div class="project-badge">
+                <span class="badge">Professional Project</span>
+                <span class="badge badge-success">Completed & Deployed</span>
+            </div>
+            <h1>Professional Portfolio Website</h1>
+            <p class="project-subtitle">
+                A comprehensive, responsive portfolio website built with modern web technologies to showcase 
+                technical expertise, projects, and professional experience as a Software Engineering student.
+            </p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Completion Date: December 2024</span>
                 </div>
-                <h1>Personal Portfolio Website</h1>
-                <p class="project-subtitle">A modern, responsive portfolio showcasing skills, projects, and professional experience</p>
-                
-                <div class="project-meta">
-                    <div class="meta-item">
-                        <i class="fas fa-calendar"></i>
-                        <span>Completed: December 2024</span>
+                <div class="meta-item">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Category: Full-Stack Development</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Development Timeline: 2 Weeks</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Preview -->
+        <section class="project-preview">
+            <div class="preview-container">
+                <div class="browser-mockup">
+                    <div class="browser-header">
+                        <div class="browser-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
-                    <div class="meta-item">
+                    <div class="preview-content">
+                        <h3>Live Project Demonstration</h3>
+                        <p>Experience the fully functional portfolio website with all implemented features</p>
+                        <a href="../../index.html" class="btn btn-large" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Launch Live Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Details -->
+        <section class="project-details">
+            <div class="details-grid">
+                <div class="details-card">
+                    <h3><i class="fas fa-bullseye"></i> Project Objectives</h3>
+                    <ul>
+                        <li>Establish a professional online presence to showcase technical capabilities</li>
+                        <li>Demonstrate proficiency in modern frontend development practices</li>
+                        <li>Implement responsive design principles for cross-device compatibility</li>
+                        <li>Optimize website performance and search engine visibility</li>
+                        <li>Integrate interactive features to enhance user engagement</li>
+                        <li>Provide a platform for professional networking and opportunity discovery</li>
+                    </ul>
+                </div>
+
+                <div class="details-card">
+                    <h3><i class="fas fa-cogs"></i> Technical Stack & Tools</h3>
+                    <div class="tech-stack">
+                        <span class="tech-tag html">HTML5 & Semantic Markup</span>
+                        <span class="tech-tag css">CSS3 with Flexbox/Grid</span>
+                        <span class="tech-tag js">JavaScript (ES6+)</span>
+                        <span class="tech-tag responsive">Responsive Web Design</span>
+                        <span class="tech-tag git">Git Version Control</span>
+                        <span class="tech-tag api">FormSubmit API Integration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2><i class="fas fa-star"></i> Key Technical Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Architecture</h3>
+                    <p>Fully adaptive design with mobile-first approach ensuring optimal viewing experience across all devices and screen resolutions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Performance Optimized</h3>
+                    <p>Optimized asset loading and efficient code execution resulting in fast page load times and smooth user interactions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Modern UI/UX Design</h3>
+                    <p>Clean, professional interface with consistent design language, smooth animations, and intuitive navigation patterns</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-code"></i>
-                        <span>Frontend Development</span>
                     </div>
-                    <div class="meta-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Development Time: 2 weeks</span>
-                    </div>
+                    <h3>Maintainable Codebase</h3>
+                    <p>Well-structured, documented code following best practices for readability, scalability, and future maintenance</p>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Project Preview -->
-            <section class="project-preview">
-                <div class="preview-container">
-                    <div class="preview-image">
-                        <div class="browser-mockup">
-                            <div class="browser-header">
-                                <div class="browser-dots">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </div>
-                            <div class="preview-content">
-                                <h3>Live Preview</h3>
-                                <p>Click the button below to view the live website</p>
-                                <a href="../../index.html" class="btn btn-large" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i> View Live Site
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Project Details -->
-            <section class="project-details">
-                <div class="details-grid">
-                    <div class="details-card">
-                        <h3><i class="fas fa-bullseye"></i> Project Goals</h3>
-                        <ul>
-                            <li>Create a professional online presence</li>
-                            <li>Showcase projects and skills effectively</li>
-                            <li>Implement responsive design for all devices</li>
-                            <li>Optimize for performance and accessibility</li>
-                            <li>Include interactive elements for user engagement</li>
-                        </ul>
-                    </div>
-
-                    <div class="details-card">
-                        <h3><i class="fas fa-cogs"></i> Technologies Used</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag html">HTML5</span>
-                            <span class="tech-tag css">CSS3</span>
-                            <span class="tech-tag js">JavaScript</span>
-                            <span class="tech-tag responsive">Responsive Design</span>
-                            <span class="tech-tag git">Git & GitHub</span>
-                            <span class="tech-tag api">FormSubmit API</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Features Section -->
-            <section class="features-section">
-                <h2><i class="fas fa-star"></i> Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h3>Fully Responsive</h3>
-                        <p>Adapts perfectly to all screen sizes from mobile to desktop</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h3>Fast Performance</h3>
-                        <p>Optimized for speed with efficient CSS and JavaScript</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3>Modern Design</h3>
-                        <p>Clean, professional design with smooth animations</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Clean Code</h3>
-                        <p>Well-structured, commented, and maintainable code</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Code Examples -->
-            <section class="code-section">
-                <h2><i class="fas fa-code"></i> Code Highlights</h2>
-                
-                <div class="code-example">
-                    <h3>Responsive Navigation</h3>
-                    <div class="code-container">
-<pre><code class="language-html">&lt;!-- Mobile-Friendly Navigation --&gt;
-&lt;nav&gt;
-    &lt;div class="nav-container"&gt;
-        &lt;div class="logo"&gt;Portfolio&lt;/div&gt;
-        &lt;div class="nav-toggle" id="navToggle"&gt;
-            &lt;i class="fas fa-bars"&gt;&lt;/i&gt;
+        <!-- Code Examples -->
+        <section class="code-section">
+            <h2><i class="fas fa-code"></i> Code Implementation Highlights</h2>
+            
+            <div class="code-example">
+                <h3>Responsive Navigation Implementation</h3>
+                <div class="code-container">
+<pre><code class="language-html">&lt;!-- Responsive Navigation Structure --&gt;
+&lt;header&gt;
+    &lt;nav class="navbar"&gt;
+        &lt;div class="nav-container"&gt;
+            &lt;div class="logo"&gt;
+                &lt;a href="#home"&gt;Ibrahim Rabiu&lt;/a&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- Mobile Navigation Toggle --&gt;
+            &lt;button class="mobile-toggle" aria-expanded="false" aria-controls="nav-menu"&gt;
+                &lt;span class="hamburger"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+            
+            &lt;!-- Primary Navigation Menu --&gt;
+            &lt;ul class="nav-menu" id="nav-menu"&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a href="#home" class="nav-link"&gt;Home&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a href="#about" class="nav-link"&gt;Professional Profile&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a href="#projects" class="nav-link"&gt;Technical Projects&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a href="#contact" class="nav-link"&gt;Contact&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
         &lt;/div&gt;
-        &lt;ul class="nav-menu" id="navMenu"&gt;
-            &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="#projects"&gt;Projects&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
-                    </div>
+    &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
                 </div>
+            </div>
 
-                <div class="code-example">
-                    <h3>Animated Skill Bars</h3>
-                    <div class="code-container">
-<pre><code class="language-javascript">// Animate skill bars when in viewport
+            <div class="code-example">
+                <h3>Interactive Skill Visualization</h3>
+                <div class="code-container">
+<pre><code class="language-javascript">/**
+ * Animate skill bars on scroll with Intersection Observer
+ * Demonstrates modern JavaScript patterns and performance optimization
+ */
 const animateSkillBars = () => {
     const skillBars = document.querySelectorAll('.skill-progress');
-    skillBars.forEach(bar => {
-        const width = bar.getAttribute('data-width');
-        bar.style.width = width + '%';
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const skillBar = entry.target;
+                const targetWidth = skillBar.getAttribute('data-width');
+                
+                // Animate progress bar
+                skillBar.style.width = `${targetWidth}%`;
+                skillBar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Unobserve after animation completes
+                observer.unobserve(skillBar);
+            }
+        });
+    }, {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
     });
+    
+    skillBars.forEach(bar => observer.observe(bar));
 };
 
-// Intersection Observer for scroll animations
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateSkillBars();
-        }
-    });
-});</code></pre>
-                    </div>
+// Initialize on DOM content loaded
+document.addEventListener('DOMContentLoaded', animateSkillBars);</code></pre>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Project Links -->
-            <section class="project-links">
-                <h2><i class="fas fa-external-link-alt"></i> Project Links</h2>
-                <div class="links-container">
-                    <a href="../../index.html" class="link-card" target="_blank">
-                        <i class="fas fa-globe"></i>
-                        <h3>Live Website</h3>
-                        <p>View the deployed portfolio</p>
-                    </a>
-                    <a href="https://github.com/ibrahimrabiudebug/portfolio-website" class="link-card" target="_blank">
-                        <i class="fab fa-github"></i>
-                        <h3>Source Code</h3>
-                        <p>View on GitHub</p>
-                    </a>
-                    <a href="https://ibrahimrabiudebug.github.io/portfolio-website/" class="link-card" target="_blank">
-                        <i class="fas fa-rocket"></i>
-                        <h3>GitHub Pages</h3>
-                        <p>Deployed version</p>
-                    </a>
-                </div>
-            </section>
-        </div>
+        <!-- Project Links -->
+        <section class="project-links">
+            <h2><i class="fas fa-external-link-alt"></i> Project Resources</h2>
+            <div class="links-container">
+                <a href="../../index.html" class="link-card" target="_blank">
+                    <i class="fas fa-globe"></i>
+                    <h3>Live Deployment</h3>
+                    <p>Access the production-ready portfolio website</p>
+                </a>
+                <a href="https://github.com/ibrahimrabiudebug/portfolio-website" class="link-card" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <h3>Source Code Repository</h3>
+                    <p>Review the complete codebase and commit history</p>
+                </a>
+                <a href="https://ibrahimrabiudebug.github.io/portfolio-website/" class="link-card" target="_blank">
+                    <i class="fas fa-rocket"></i>
+                    <h3>GitHub Pages Hosting</h3>
+                    <p>Production deployment via GitHub Pages</p>
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <div class="container footer-content">
-            <p>© 2026 Ibrahim Rabiu. Portfolio Project</p>
+        <div class="footer-content">
+            <p>© 2026 Ibrahim Rabiu | BSc Software Engineering Student</p>
             <a href="../../index.html" class="back-home">
-                <i class="fas fa-arrow-left"></i> Back to Main Portfolio
+                <i class="fas fa-arrow-left"></i> Return to Professional Portfolio
             </a>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Professional JavaScript for project page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up external links
+            const externalLinks = document.querySelectorAll('a[target="_blank"]');
+            externalLinks.forEach(link => {
+                link.rel = 'noopener noreferrer';
+            });
+            
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.feature-card, .link-card, .details-card').forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Syntax highlighting simulation
+            const codeBlocks = document.querySelectorAll('pre code');
+            codeBlocks.forEach(block => {
+                // Add line numbers
+                const lines = block.innerHTML.split('\n');
+                if (lines.length > 1) {
+                    block.innerHTML = lines.map((line, index) => 
+                        `<span class="line-number">${index + 1}</span>${line}`
+                    ).join('\n');
+                }
+            });
+            
+            // Add copy to clipboard functionality
+            const copyButtons = document.createElement('div');
+            copyButtons.className = 'copy-buttons';
+            copyButtons.innerHTML = `
+                <button class="copy-btn" data-target="html-code">Copy HTML</button>
+                <button class="copy-btn" data-target="js-code">Copy JavaScript</button>
+            `;
+            
+            document.querySelector('.code-section').appendChild(copyButtons);
+            
+            // Copy functionality
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    const codeElement = document.querySelector(`.language-${target}`);
+                    
+                    if (codeElement) {
+                        navigator.clipboard.writeText(codeElement.textContent)
+                            .then(() => {
+                                const originalText = this.textContent;
+                                this.textContent = 'Copied!';
+                                this.style.backgroundColor = '#10b981';
+                                
+                                setTimeout(() => {
+                                    this.textContent = originalText;
+                                    this.style.backgroundColor = '';
+                                }, 2000);
+                            })
+                            .catch(err => console.error('Failed to copy:', err));
+                    }
+                });
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Performance tracking
+            const pageLoadTime = window.performance.timing.domContentLoadedEventEnd - 
+                               window.performance.timing.navigationStart;
+            
+            console.log(`Page loaded in ${pageLoadTime}ms`);
+            
+            // Add view count tracking (simulated)
+            if (localStorage.getItem('projectViews')) {
+                let views = parseInt(localStorage.getItem('projectViews'));
+                views++;
+                localStorage.setItem('projectViews', views);
+            } else {
+                localStorage.setItem('projectViews', 1);
+            }
+        });
+    </script>
 </body>
 </html>
